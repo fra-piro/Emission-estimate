@@ -100,7 +100,8 @@ el_sc = 0
 while el_sc < len(sc_bound_lt):
     for i in range(len(mixlat_lt)):
         mixlat_lt[i] = np.resize(mixlat_lt[i], (1, 4172, 215))
-        latvals_sc = np.where(mixlat_lt[i].any() > sc_bound_lt[el_sc][1].any() and                               mixlat_lt[i].any() < sc_bound_lt[el_sc][-1].any(), mixlat_lt[i], np.nan)
+        latvals_sc = np.where(mixlat_lt[i].any() > sc_bound_lt[el_sc][1].any() and \
+                              mixlat_lt[i].any() < sc_bound_lt[el_sc][-1].any(), mixlat_lt[i], np.nan)
         lat_arr_sc = xr.DataArray(latvals_sc)
         lat_cond_sc = xr.where(lat_arr > 0, lat_arr_sc, 0)   
         latlt_sc.append(lat_cond_sc)
@@ -111,7 +112,8 @@ el_sc = 0; j = 0
 while el_sc < len(sc_bound_lt):
     for j in range(len(mixlon_lt)):
         mixlon_lt[j] = np.resize(mixlon_lt[j], (1, 4172, 215))
-        lonvals_sc = np.where(mixlon_lt[j].any() > sc_bound_lt[el_sc][0].any() and                               mixlon_lt[j].any() < sc_bound_lt[el_sc][2].any(), mixlon_lt[j], np.nan)
+        lonvals_sc = np.where(mixlon_lt[j].any() > sc_bound_lt[el_sc][0].any() and \
+                              mixlon_lt[j].any() < sc_bound_lt[el_sc][2].any(), mixlon_lt[j], np.nan)
         lon_arr_sc = xr.DataArray(lonvals_sc)
         lon_cond = xr.where(lon_arr < 0, lon_arr_sc, 0)
         lonlt_sc.append(lon_cond_sc)
@@ -122,7 +124,8 @@ el_sc = 0; k = 0
 while el_sc < len(sc_bound_lt):
     for k in range(len(mixlon_lt)):
         for n in range(len(lonlt_sc)):
-            lgdat_sc = np.where(mixlat_lt[k].any() > sc_bound_lt[el_sc][1].any() and                                 mixlat_lt[k].any() < sc_bound_lt[el_sc][-1].any(), lonlt_sc[n], np.nan)
+            lgdat_sc = np.where(mixlat_lt[k].any() > sc_bound_lt[el_sc][1].any() and \
+                                mixlat_lt[k].any() < sc_bound_lt[el_sc][-1].any(), lonlt_sc[n], np.nan)
             lgdat_sc_lt.append(lgsc_dat)
     el_sc += 1
 
@@ -131,7 +134,8 @@ el_bg = 0
 while el_bg < len(bg_bound_lt):
     for m in range(len(mixlat_lt)):
         mixlat_lt[m] = np.resize(mixlat_lt[m], (1, 4172, 215))
-        latvals_bg = np.where(mixlat_lt[m].any() > bg_bound_lt[el_bg][0, 1].any() and                               mixlat_lt[m].any() < bg_bound_lt[el_bg][1, 1].any(), mixlat_lt[i], np.nan)
+        latvals_bg = np.where(mixlat_lt[m].any() > bg_bound_lt[el_bg][0, 1].any() and \
+                              mixlat_lt[m].any() < bg_bound_lt[el_bg][1, 1].any(), mixlat_lt[i], np.nan)
         lat_arr_bg = xr.DataArray(latvals_bg)
         lat_cond_bg = xr.where(lat_arr2 > 0, lat_arr_bg, 0)
         latlt_bg.append(lat_cond_bg)
@@ -142,7 +146,8 @@ el_bg = 0
 while el_bg < len(bg_bound_lt):
     for n in range(len(mixlon_lt)):
         mixlon_lt[n] = np.resize(mixlon_lt[n], (1, 4172, 215))
-        lonvals_bg = np.where(mixlon_lt[n].any() > bg_bound_lt[el_bg][0, 0].any() and                               mixlon_lt[n].any() < bg_bound_lt[el_bg][1, 0].any(), mixlon_lt[n], np.nan)
+        lonvals_bg = np.where(mixlon_lt[n].any() > bg_bound_lt[el_bg][0, 0].any() and \
+                              mixlon_lt[n].any() < bg_bound_lt[el_bg][1, 0].any(), mixlon_lt[n], np.nan)
         lon_arr_bg = xr.DataArray(lonvals_bg)
         lon_cond_bg = xr.where(lon_arr2 < 0, lon_arr_bg, 0)
         lonlt_bg.append(lon_cond_bg)
@@ -153,7 +158,8 @@ el_bg = 0; k = 0
 while el_sc < len(bg_bound_lt):
     for p in range(len(mixlon_lt)):
         for n in range(len(lonlt_bg)):
-            lgdat_bg = np.where(mixlat_lt[p].any() > bg_bound_lt[el_bg][0, 0].any() and                                 mixlat_lt[p].any() < bg_bound_lt[el_bg][1, 0].any(), lonlt_sc[n], np.nan)
+            lgdat_bg = np.where(mixlat_lt[p].any() > bg_bound_lt[el_bg][0, 0].any() and \
+                                mixlat_lt[p].any() < bg_bound_lt[el_bg][1, 0].any(), lonlt_sc[n], np.nan)
             lgdat_bg_lt.append(lgbg_dat)
     el_sc += 1
 
